@@ -7,6 +7,6 @@ namespace WebApiTest.Models
 {
     public class User
     {
-
+        public String Name { get; set; }
     }
 }
