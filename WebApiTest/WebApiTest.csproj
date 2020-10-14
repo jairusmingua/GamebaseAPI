@@ -95,15 +95,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Game.Context.tt">
+    <Content Include="GameBase.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Game.edmx</DependentUpon>
-      <LastGenOutput>Game.Context.cs</LastGenOutput>
+      <DependentUpon>GameBase.edmx</DependentUpon>
+      <LastGenOutput>GameBase.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Game.tt">
+    <Content Include="GameBase.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Game.edmx</DependentUpon>
-      <LastGenOutput>Game1.cs</LastGenOutput>
+      <DependentUpon>GameBase.edmx</DependentUpon>
+      <LastGenOutput>GameBase.cs</LastGenOutput>
     </Content>
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
@@ -111,42 +111,55 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\GameController.cs" />
-    <Compile Include="Game.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Game.Context.tt</DependentUpon>
+    <Compile Include="Favorite.cs">
+      <DependentUpon>GameBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Game.cs">
-      <DependentUpon>Game.tt</DependentUpon>
+      <DependentUpon>GameBase.tt</DependentUpon>
     </Compile>
-    <Compile Include="Game.Designer.cs">
+    <Compile Include="GameBase.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Game.edmx</DependentUpon>
+      <DependentUpon>GameBase.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Game1.cs">
+    <Compile Include="GameBase.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Game.tt</DependentUpon>
+      <DependentUpon>GameBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GameBase.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GameBase.edmx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Game.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="News.cs">
+      <DependentUpon>GameBase.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Review.cs">
+      <DependentUpon>GameBase.tt</DependentUpon>
+    </Compile>
     <Compile Include="sysdiagram.cs">
-      <DependentUpon>Game.tt</DependentUpon>
+      <DependentUpon>GameBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User_Credentials_.cs">
+      <DependentUpon>GameBase.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Game.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Game.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Game.edmx.diagram">
-      <DependentUpon>Game.edmx</DependentUpon>
-    </Content>
     <Content Include="ClassDiagram1.cd" />
+    <EntityDeploy Include="GameBase.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>GameBase.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="GameBase.edmx.diagram">
+      <DependentUpon>GameBase.edmx</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

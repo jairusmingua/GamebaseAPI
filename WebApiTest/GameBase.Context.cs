@@ -13,11 +13,12 @@ namespace WebApiTest
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class gamebasedbEntities : DbContext
+    public partial class gamebase1Entities : DbContext
     {
-        public gamebasedbEntities()
-            : base("name=gamebasedbEntities")
+        public gamebase1Entities()
+            : base("name=gamebase1Entities")
         {
+            Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -25,7 +26,11 @@ namespace WebApiTest
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<News> News { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<User_Credentials_> User_Credentials_ { get; set; }
+        public virtual DbSet<Favorite> Favorites { get; set; }
+        public virtual DbSet<Review> Reviews { get; set; }
         public virtual DbSet<Game> Games { get; set; }
     }
 }
