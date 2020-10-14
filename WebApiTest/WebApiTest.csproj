@@ -145,6 +145,7 @@
     <Content Include="Game.edmx.diagram">
       <DependentUpon>Game.edmx</DependentUpon>
     </Content>
+    <Content Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
