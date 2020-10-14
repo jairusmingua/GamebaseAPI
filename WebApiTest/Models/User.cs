@@ -8,5 +8,6 @@ namespace WebApiTest.Models
     public class User
     {
         public String Name { get; set; }
+       public string game { get; set; }
     }
 }
