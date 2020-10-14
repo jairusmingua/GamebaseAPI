@@ -12,22 +12,21 @@ namespace WebApiTest
     using System;
     using System.Collections.Generic;
     
-    public partial class Game
+    public partial class User_Credentials_
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Game()
+        public User_Credentials_()
         {
             this.Favorites = new HashSet<Favorite>();
             this.Reviews = new HashSet<Review>();
         }
     
-        public System.Guid GameID { get; set; }
-        public string GameTitle { get; set; }
-        public string MatureRating { get; set; }
-        public string Developer { get; set; }
-        public string Synopsis { get; set; }
-        public Nullable<System.DateTime> GameReleased { get; set; }
-        public string GameImageURL { get; set; }
+        public System.Guid UserID { get; set; }
+        public string Username { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string Birthday { get; set; }
+        public string Gender { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Favorite> Favorites { get; set; }
