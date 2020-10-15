@@ -53,6 +53,25 @@ namespace WebApiTest.Controllers
             return game;
 
         }
+        [Route("api/game/favorite/{gameId:guid}")]
+        [HttpPost]
+        //this must be authenticated but for the mean time gamit muna ng isang user which is 'jai' na nasa db
+        //this will favorite the game id given you have the user
+        public IHttpActionResult SetAsFavorite(Guid gameId)
+        {
+            using(var context = new gamebase1Entities())
+            {
+                var user = context.User_Credentials_.Where(u => u.Username=="jai").Single(); //temporary
+                Favorite favorite = new Favorite{
+                    FavoriteID = new Guid(),
+                    GameID = gameId,
+                    UserID = user.UserID
+
+                };
+                context.Favorites.Add(favorite);
+            }
+            return Ok();
+        }
         [Route("api/game/{id:guid}")]
         [HttpGet]
         public IHttpActionResult GetGame(Guid id)
