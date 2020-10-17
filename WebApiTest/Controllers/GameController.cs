@@ -8,6 +8,7 @@ using System.Web.Http;
 using System.Data.Entity;
 using System.Security.Claims;
 using Microsoft.AspNet.Identity;
+using WebApiTest.Models;
 
 namespace WebApiTest.Controllers
 {
@@ -95,6 +96,7 @@ namespace WebApiTest.Controllers
             }
             return Ok();
         }
+        [AllowAnonymous]
         [Route("api/game/{id:guid}")]
         [HttpGet]
         //gets game information
@@ -103,14 +105,65 @@ namespace WebApiTest.Controllers
 
             using (var context = new gamebase1Entities())
             {
-                IQueryable<Game> game = context.Games.Where(p => p.GameID == id);
-                Game g = game.ToList()[0];
-                if (g == null)
+                var identity = User.Identity as ClaimsIdentity;
+                var claims = from c in identity.Claims //extracting the username in var identity
+                             select new
+                             {
+                                 subject = c.Subject.Name,
+                                 type = c.Type,
+                                 value = c.Value
+                             };
+                try
                 {
-                    return NotFound();
+                    var userName = claims.ToList()[0].value.ToString(); //converting to string 
+                    AspNetUser user = context.AspNetUsers.Where(u => u.UserName == userName).Single();
+
+                    if (identity.IsAuthenticated)
+                    {
+                        Game game = context.Games.Where(p => p.GameID == id).Single();
+                        Favorite favorite = context.Favorites.Where(u => u.GameID == game.GameID && u.UserID == user.Id).SingleOrDefault();
+                        GameModel g = new GameModel
+                        {
+                            GameID = game.GameID,
+                            GameTitle = game.GameTitle,
+                            GameImageURL = game.GameImageURL,
+                            GameReleased = game.GameReleased,
+                            Developer = game.Developer,
+                            MatureRating = game.MatureRating,
+                            Synopsis = game.Synopsis,
+                            isFavorite = favorite != null ? true : false
+                        };
+                        if (g == null)
+                        {
+                            return NotFound();
+                        }
+                        return Ok(g);
+                    }
+                    else
+                    {
+                        IQueryable<Game> game = context.Games.Where(p => p.GameID == id);
+                        Game g = game.ToList()[0];
+                        if (g == null)
+                        {
+                            return NotFound();
+                        }
+                        return Ok(g);
+
+                    }
                 }
-                return Ok(g);
-            }
+                catch(Exception err)
+                {
+                    IQueryable<Game> game = context.Games.Where(p => p.GameID == id);
+                    Game g = game.ToList()[0];
+                    if (g == null)
+                    {
+                        return NotFound();
+                    }
+                    return Ok(g);
+                }
+                //if not authorized use this return 
+   
+            }            
         }
     }
 }

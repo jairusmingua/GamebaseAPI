@@ -27,6 +27,7 @@ namespace WebApiTest
             IdentityUser user = new IdentityUser
             {
                 UserName = userModel.Username
+               
             };
 
             var result = await _userManager.CreateAsync(user, userModel.Password);
@@ -48,4 +49,5 @@ namespace WebApiTest
 
         }
     }
+    
 }

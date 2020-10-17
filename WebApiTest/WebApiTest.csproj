@@ -174,7 +174,7 @@
       <DependentUpon>GameBase.edmx</DependentUpon>
     </Compile>
     <Compile Include="Microsoft\Owin\Cors.cs" />
-    <Compile Include="Models\Game.cs" />
+    <Compile Include="Models\GameModel.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="News.cs">
       <DependentUpon>GameBase.tt</DependentUpon>
