@@ -6,6 +6,8 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Data.Entity;
+using System.Security.Claims;
+using Microsoft.AspNet.Identity;
 
 namespace WebApiTest.Controllers
 {
@@ -14,6 +16,7 @@ namespace WebApiTest.Controllers
        
         [Route("api/game/topgames")]
         [HttpGet]
+        //gets first top 10 from the db
         public IEnumerable<Game>GetTopGames()
         {
             List<Game> game;
@@ -28,24 +31,33 @@ namespace WebApiTest.Controllers
 
             return game;
         }
+        [Authorize]
         [Route("api/game/favorites")]
         [HttpGet]
-        //this must be authenticated but for the mean time gamit muna ng isang user which is 'jai' na nasa db
+        //an authorized request wherein it maches users favorite game
         public IEnumerable<Game> GetFavorites()
         {
             List<Game> game;
             using (var context = new gamebase1Entities())
             {
-
-                game = (from u in context.User_Credentials_
+                var identity = User.Identity as ClaimsIdentity; //each authorized request merong username na nakaattach sa mga request so need natin i extract mga yun at i match sa db
+                var claims = from c in identity.Claims //extracting the username in var identity
+                             select new
+                             {
+                                 subject = c.Subject.Name,
+                                 type = c.Type,
+                                 value = c.Value
+                             };
+                var userName = claims.ToList()[0].value.ToString(); //converting to string 
+                game = (from u in context.AspNetUsers 
                         join f in context.Favorites
-                        on u.UserID equals f.UserID
+                        on u.Id equals f.UserID
                         join g in context.Games
                         on f.GameID equals g.GameID
-                        where u.Username == "jai"
+                        where u.UserName == userName
                         select g
                         ).ToList();
-
+                // this performs a join command wherein it searches favorite table games that favorite by the username
 
 
             }
@@ -53,27 +65,39 @@ namespace WebApiTest.Controllers
             return game;
 
         }
+        
+        [Authorize]
         [Route("api/game/favorite/{gameId:guid}")]
         [HttpPost]
-        //this must be authenticated but for the mean time gamit muna ng isang user which is 'jai' na nasa db
-        //this will favorite the game id given you have the user
+        //lets you do a authorized command wherein you can favorite a game using its gameid
         public IHttpActionResult SetAsFavorite(Guid gameId)
         {
             using(var context = new gamebase1Entities())
             {
-                var user = context.User_Credentials_.Where(u => u.Username=="jai").Single(); //temporary
-                Favorite favorite = new Favorite{
+                var identity = User.Identity as ClaimsIdentity;//each authorized request merong username na nakaattach sa mga request so need natin i extract mga yun at i match sa db
+                var claims = from c in identity.Claims //extracting the username in var identity
+                             select new
+                             {
+                                 subject = c.Subject.Name,
+                                 type = c.Type,
+                                 value = c.Value
+                             };
+                var userName = claims.ToList()[0].value.ToString(); //converting to string 
+                AspNetUser user = context.AspNetUsers.Where(u => u.UserName == userName).Single();
+                Favorite favorite = new Favorite {
                     FavoriteID = new Guid(),
                     GameID = gameId,
-                    UserID = user.UserID
+                    UserID = user.Id
 
                 };
-                context.Favorites.Add(favorite);
+                context.Favorites.Add(favorite); //performing transaction
+                context.SaveChanges(); //saving to db 
             }
             return Ok();
         }
         [Route("api/game/{id:guid}")]
         [HttpGet]
+        //gets game information
         public IHttpActionResult GetGame(Guid id)
         {   
 

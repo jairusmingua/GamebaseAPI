@@ -20,7 +20,7 @@ namespace WebApiTest
         public int StarRating { get; set; }
         public string ReviewText { get; set; }
     
-        public virtual User_Credentials_ User_Credentials_ { get; set; }
         public virtual Game Game { get; set; }
+        public virtual User_Credentials_ User_Credentials_ { get; set; }
     }
 }
