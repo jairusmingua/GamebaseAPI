@@ -17,8 +17,8 @@ namespace WebApiTest
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Game()
         {
-            this.Favorites = new HashSet<Favorite>();
             this.Reviews = new HashSet<Review>();
+            this.Favorites = new HashSet<Favorite>();
         }
     
         public System.Guid GameID { get; set; }
@@ -30,8 +30,8 @@ namespace WebApiTest
         public string GameImageURL { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Favorite> Favorites { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Review> Reviews { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Favorite> Favorites { get; set; }
     }
 }
