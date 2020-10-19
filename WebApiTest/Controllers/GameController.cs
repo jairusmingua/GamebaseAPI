@@ -86,7 +86,7 @@ namespace WebApiTest.Controllers
                 var userName = claims.ToList()[0].value.ToString(); //converting to string 
                 AspNetUser user = context.AspNetUsers.Where(u => u.UserName == userName).Single();
                 Favorite favorite = new Favorite {
-                    FavoriteID = new Guid(),
+                    FavoriteID = Guid.NewGuid(),
                     GameID = gameId,
                     UserID = user.Id
 
@@ -96,7 +96,7 @@ namespace WebApiTest.Controllers
             }
             return Ok();
         }
-        [AllowAnonymous]
+        [AllowAnonymous] //allows not signed in users to access this route
         [Route("api/game/{id:guid}")]
         [HttpGet]
         //gets game information

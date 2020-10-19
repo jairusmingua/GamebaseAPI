@@ -11,7 +11,7 @@ using WebApiTest.Models;
 namespace WebApiTest.Controllers
 {
     [RoutePrefix("api/Account")]
-    //this can contain application registration, change password etc.
+    //this controller can contain application registration, change password etc.
     public class AccountController : ApiController
     {
         private AuthRepository _repo = null;

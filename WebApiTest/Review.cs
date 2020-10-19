@@ -15,12 +15,12 @@ namespace WebApiTest
     public partial class Review
     {
         public System.Guid ReviewID { get; set; }
-        public System.Guid GameID { get; set; }
-        public System.Guid UserID { get; set; }
-        public int StarRating { get; set; }
+        public Nullable<System.Guid> GameID { get; set; }
+        public string UserID { get; set; }
         public string ReviewText { get; set; }
+        public int StarRating { get; set; }
     
+        public virtual AspNetUser AspNetUser { get; set; }
         public virtual Game Game { get; set; }
-        public virtual User_Credentials_ User_Credentials_ { get; set; }
     }
 }

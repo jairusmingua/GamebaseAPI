@@ -4,26 +4,26 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a37c2ccabf6446848c1575d4715ddab4" Name="Diagram1" ZoomLevel="62">
+      <Diagram DiagramId="a37c2ccabf6446848c1575d4715ddab4" Name="Diagram1" ZoomLevel="62" DisplayType="true">
         <EntityTypeShape EntityType="gamebase1Model.News" Width="1.5" PointX="5.375" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="gamebase1Model.sysdiagram" Width="1.5" PointX="2.75" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="gamebase1Model.Review" Width="1.5" PointX="7.625" PointY="7.5" />
         <EntityTypeShape EntityType="gamebase1Model.Game" Width="1.5" PointX="5.375" PointY="5.875" />
-        <AssociationConnector Association="gamebase1Model.FK_Review_Games" />
         <EntityTypeShape EntityType="gamebase1Model.C__MigrationHistory" Width="1.5" PointX="2.625" PointY="4.75" />
         <EntityTypeShape EntityType="gamebase1Model.AspNetRole" Width="1.5" PointX="8.75" PointY="2.5" />
         <EntityTypeShape EntityType="gamebase1Model.AspNetUserClaim" Width="1.5" PointX="13.25" PointY="3.625" />
         <EntityTypeShape EntityType="gamebase1Model.AspNetUserLogin" Width="1.5" PointX="13.25" PointY="1" />
         <EntityTypeShape EntityType="gamebase1Model.AspNetUser" Width="1.5" PointX="11" PointY="1.375" />
-        <EntityTypeShape EntityType="gamebase1Model.User_Credentials_" Width="1.5" PointX="0.75" PointY="1" />
         <AssociationConnector Association="gamebase1Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="gamebase1Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
-        <AssociationConnector Association="gamebase1Model.FK_Review_User_Credentials_" />
         <AssociationConnector Association="gamebase1Model.AspNetUserRoles" />
         <EntityTypeShape EntityType="gamebase1Model.Favorite" Width="1.5" PointX="10.5" PointY="7" />
         <AssociationConnector Association="gamebase1Model.FK__Favorites__UserI__09A971A2" />
         <AssociationConnector Association="gamebase1Model.FK__Favorites__GameI__08B54D69" />
-      </Diagram>
+        <EntityTypeShape EntityType="gamebase1Model.User_Credentials_" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="gamebase1Model.Review" Width="1.5" PointX="13.25" PointY="6.875" />
+        <AssociationConnector Association="gamebase1Model.FK__Review__UserID__0F624AF8" />
+        <AssociationConnector Association="gamebase1Model.FK__Review__GameID__0E6E26BF" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

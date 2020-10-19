@@ -24,7 +24,11 @@ namespace WebApiTest
                 routeTemplate: "api/{controller}"
                 
             );
+            //config.Routes.MapHttpRoute(
+            //    name: "ReviewApi",
+            //    routeTemplate: "api/{controller}/{action}"
 
+            //);
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
 
             var json = config.Formatters.JsonFormatter;

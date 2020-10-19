@@ -100,10 +100,10 @@
             <PropertyRef Name="ReviewID" />
           </Key>
           <Property Name="ReviewID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="GameID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="UserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="GameID" Type="uniqueidentifier" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="128" />
+          <Property Name="ReviewText" Type="nvarchar(max)" Nullable="false" />
           <Property Name="StarRating" Type="int" Nullable="false" />
-          <Property Name="ReviewText" Type="nvarchar" MaxLength="500" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -146,6 +146,30 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Favorites">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Review__GameID__0E6E26BF">
+          <End Role="Games" Type="Self.Games" Multiplicity="0..1" />
+          <End Role="Review" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Games">
+              <PropertyRef Name="GameID" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="GameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Review__UserID__0F624AF8">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Review" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Review">
               <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
@@ -206,30 +230,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Review_Games">
-          <End Role="Games" Type="Self.Games" Multiplicity="1" />
-          <End Role="Review" Type="Self.Review" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Games">
-              <PropertyRef Name="GameID" />
-            </Principal>
-            <Dependent Role="Review">
-              <PropertyRef Name="GameID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Review_User(Credentials)">
-          <End Role="User(Credentials)" Type="Self.User(Credentials)" Multiplicity="1" />
-          <End Role="Review" Type="Self.Review" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User(Credentials)">
-              <PropertyRef Name="UserID" />
-            </Principal>
-            <Dependent Role="Review">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="gamebase1ModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -251,6 +251,14 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Favorites" EntitySet="Favorites" />
           </AssociationSet>
+          <AssociationSet Name="FK__Review__GameID__0E6E26BF" Association="Self.FK__Review__GameID__0E6E26BF">
+            <End Role="Games" EntitySet="Games" />
+            <End Role="Review" EntitySet="Review" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Review__UserID__0F624AF8" Association="Self.FK__Review__UserID__0F624AF8">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Review" EntitySet="Review" />
+          </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -266,14 +274,6 @@
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Review_Games" Association="Self.FK_Review_Games">
-            <End Role="Games" EntitySet="Games" />
-            <End Role="Review" EntitySet="Review" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Review_User(Credentials)" Association="Self.FK_Review_User(Credentials)">
-            <End Role="User(Credentials)" EntitySet="User(Credentials)" />
-            <End Role="Review" EntitySet="Review" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -302,18 +302,12 @@
         <EntityContainer Name="gamebase1Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="News" EntityType="Self.News" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="Reviews" EntityType="gamebase1Model.Review" />
           <EntitySet Name="Games" EntityType="gamebase1Model.Game" />
-          <AssociationSet Name="FK_Review_Games" Association="gamebase1Model.FK_Review_Games">
-            <End Role="Game" EntitySet="Games" />
-            <End Role="Review" EntitySet="Reviews" />
-          </AssociationSet>
           <EntitySet Name="C__MigrationHistory" EntityType="gamebase1Model.C__MigrationHistory" />
           <EntitySet Name="AspNetRoles" EntityType="gamebase1Model.AspNetRole" />
           <EntitySet Name="AspNetUserClaims" EntityType="gamebase1Model.AspNetUserClaim" />
           <EntitySet Name="AspNetUserLogins" EntityType="gamebase1Model.AspNetUserLogin" />
           <EntitySet Name="AspNetUsers" EntityType="gamebase1Model.AspNetUser" />
-          <EntitySet Name="User_Credentials_" EntityType="gamebase1Model.User_Credentials_" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="gamebase1Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
@@ -321,10 +315,6 @@
           <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="gamebase1Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Review_User_Credentials_" Association="gamebase1Model.FK_Review_User_Credentials_">
-            <End Role="User_Credentials_" EntitySet="User_Credentials_" />
-            <End Role="Review" EntitySet="Reviews" />
           </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="gamebase1Model.AspNetUserRoles">
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
@@ -339,19 +329,17 @@
             <End Role="Game" EntitySet="Games" />
             <End Role="Favorite" EntitySet="Favorites" />
           </AssociationSet>
+          <EntitySet Name="User_Credentials_" EntityType="gamebase1Model.User_Credentials_" />
+          <EntitySet Name="Reviews" EntityType="gamebase1Model.Review" />
+          <AssociationSet Name="FK__Review__UserID__0F624AF8" Association="gamebase1Model.FK__Review__UserID__0F624AF8">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Review" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Review__GameID__0E6E26BF" Association="gamebase1Model.FK__Review__GameID__0E6E26BF">
+            <End Role="Game" EntitySet="Games" />
+            <End Role="Review" EntitySet="Reviews" />
+          </AssociationSet>
           </EntityContainer>
-        <EntityType Name="Review">
-          <Key>
-            <PropertyRef Name="ReviewID" />
-          </Key>
-          <Property Name="ReviewID" Type="Guid" Nullable="false" />
-          <Property Name="GameID" Type="Guid" Nullable="false" />
-          <Property Name="UserID" Type="Guid" Nullable="false" />
-          <Property Name="StarRating" Type="Int32" Nullable="false" />
-          <Property Name="ReviewText" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Game" Relationship="gamebase1Model.FK_Review_Games" FromRole="Review" ToRole="Game" />
-          <NavigationProperty Name="User_Credentials_" Relationship="gamebase1Model.FK_Review_User_Credentials_" FromRole="Review" ToRole="User_Credentials_" />
-        </EntityType>
         <EntityType Name="Game">
           <Key>
             <PropertyRef Name="GameID" />
@@ -363,21 +351,9 @@
           <Property Name="Synopsis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="GameReleased" Type="DateTime" Precision="0" />
           <Property Name="GameImageURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Reviews" Relationship="gamebase1Model.FK_Review_Games" FromRole="Game" ToRole="Review" />
           <NavigationProperty Name="Favorites" Relationship="gamebase1Model.FK__Favorites__GameI__08B54D69" FromRole="Game" ToRole="Favorite" />
+          <NavigationProperty Name="Reviews" Relationship="gamebase1Model.FK__Review__GameID__0E6E26BF" FromRole="Game" ToRole="Review" />
         </EntityType>
-        <Association Name="FK_Review_Games">
-          <End Type="gamebase1Model.Game" Role="Game" Multiplicity="1" />
-          <End Type="gamebase1Model.Review" Role="Review" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Game">
-              <PropertyRef Name="GameID" />
-            </Principal>
-            <Dependent Role="Review">
-              <PropertyRef Name="GameID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="C__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -437,19 +413,8 @@
           <NavigationProperty Name="AspNetUserLogins" Relationship="gamebase1Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
           <NavigationProperty Name="AspNetRoles" Relationship="gamebase1Model.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
           <NavigationProperty Name="Favorites" Relationship="gamebase1Model.FK__Favorites__UserI__09A971A2" FromRole="AspNetUser" ToRole="Favorite" />
+          <NavigationProperty Name="Reviews" Relationship="gamebase1Model.FK__Review__UserID__0F624AF8" FromRole="AspNetUser" ToRole="Review" />
           </EntityType>
-        <EntityType Name="User_Credentials_">
-          <Key>
-            <PropertyRef Name="UserID" />
-          </Key>
-          <Property Name="UserID" Type="Guid" Nullable="false" />
-          <Property Name="Username" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="Birthday" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="Gender" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Reviews" Relationship="gamebase1Model.FK_Review_User_Credentials_" FromRole="User_Credentials_" ToRole="Review" />
-        </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Type="gamebase1Model.AspNetUser" Role="AspNetUser" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -475,18 +440,6 @@
             </Principal>
             <Dependent Role="AspNetUserLogin">
               <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Review_User_Credentials_">
-          <End Type="gamebase1Model.User_Credentials_" Role="User_Credentials_" Multiplicity="1" />
-          <End Type="gamebase1Model.Review" Role="Review" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User_Credentials_">
-              <PropertyRef Name="UserID" />
-            </Principal>
-            <Dependent Role="Review">
-              <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -528,6 +481,53 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="User_Credentials_">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Guid" Nullable="false" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="ReviewID" />
+          </Key>
+          <Property Name="ReviewID" Type="Guid" Nullable="false" />
+          <Property Name="GameID" Type="Guid" />
+          <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ReviewText" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StarRating" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="gamebase1Model.FK__Review__UserID__0F624AF8" FromRole="Review" ToRole="AspNetUser" />
+          <NavigationProperty Name="Game" Relationship="gamebase1Model.FK__Review__GameID__0E6E26BF" FromRole="Review" ToRole="Game" />
+        </EntityType>
+        <Association Name="FK__Review__UserID__0F624AF8">
+          <End Type="gamebase1Model.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="gamebase1Model.Review" Role="Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Review__GameID__0E6E26BF">
+          <End Type="gamebase1Model.Game" Role="Game" Multiplicity="0..1" />
+          <End Type="gamebase1Model.Review" Role="Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="GameID" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="GameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -552,17 +552,6 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Reviews">
-            <EntityTypeMapping TypeName="gamebase1Model.Review">
-              <MappingFragment StoreEntitySet="Review">
-                <ScalarProperty Name="ReviewText" ColumnName="ReviewText" />
-                <ScalarProperty Name="StarRating" ColumnName="StarRating" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="GameID" ColumnName="GameID" />
-                <ScalarProperty Name="ReviewID" ColumnName="ReviewID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -634,18 +623,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="User_Credentials_">
-            <EntityTypeMapping TypeName="gamebase1Model.User_Credentials_">
-              <MappingFragment StoreEntitySet="User(Credentials)">
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <AssociationSetMapping Name="AspNetUserRoles" TypeName="gamebase1Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
             <EndProperty Name="AspNetUser">
               <ScalarProperty Name="Id" ColumnName="UserId" />
@@ -660,6 +637,29 @@
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="GameID" ColumnName="GameID" />
                 <ScalarProperty Name="FavoriteID" ColumnName="FavoriteID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Credentials_">
+            <EntityTypeMapping TypeName="gamebase1Model.User_Credentials_">
+              <MappingFragment StoreEntitySet="User(Credentials)">
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reviews">
+            <EntityTypeMapping TypeName="gamebase1Model.Review">
+              <MappingFragment StoreEntitySet="Review">
+                <ScalarProperty Name="StarRating" ColumnName="StarRating" />
+                <ScalarProperty Name="ReviewText" ColumnName="ReviewText" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="GameID" ColumnName="GameID" />
+                <ScalarProperty Name="ReviewID" ColumnName="ReviewID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

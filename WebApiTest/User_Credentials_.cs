@@ -14,20 +14,11 @@ namespace WebApiTest
     
     public partial class User_Credentials_
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User_Credentials_()
-        {
-            this.Reviews = new HashSet<Review>();
-        }
-    
         public System.Guid UserID { get; set; }
         public string Username { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public string Birthday { get; set; }
         public string Gender { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Review> Reviews { get; set; }
     }
 }

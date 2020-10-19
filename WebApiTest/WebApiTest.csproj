@@ -149,6 +149,7 @@
     <Compile Include="AuthRepository.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\GameController.cs" />
+    <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="C__MigrationHistory.cs">
       <DependentUpon>GameBase.tt</DependentUpon>
     </Compile>
@@ -175,6 +176,7 @@
     </Compile>
     <Compile Include="Microsoft\Owin\Cors.cs" />
     <Compile Include="Models\GameModel.cs" />
+    <Compile Include="Models\ReviewModel.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="News.cs">
       <DependentUpon>GameBase.tt</DependentUpon>
