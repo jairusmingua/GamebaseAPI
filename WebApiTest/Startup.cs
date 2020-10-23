@@ -26,8 +26,10 @@ namespace WebApiTest
             {
                 AllowInsecureHttp = true,
                 TokenEndpointPath = new PathString("/token"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
+                AccessTokenExpireTimeSpan = TimeSpan.FromDays(7),
                 Provider = new SimpleAuthorizationServerProvider()
+                
+                
             };
 
             // Token Generation

@@ -96,6 +96,31 @@ namespace WebApiTest.Controllers
             }
             return Ok();
         }
+        [Authorize]
+        [Route("api/game/favorite/{gameId:guid}")]
+        [HttpDelete]
+        //lets you do a authorized command wherein you can unfavorite a game using its gameid
+        public IHttpActionResult DeleteFavorite(Guid gameId)
+        {
+            using (var context = new gamebase1Entities())
+            {
+                var identity = User.Identity as ClaimsIdentity;//each authorized request merong username na nakaattach sa mga request so need natin i extract mga yun at i match sa db
+                var claims = from c in identity.Claims //extracting the username in var identity
+                             select new
+                             {
+                                 subject = c.Subject.Name,
+                                 type = c.Type,
+                                 value = c.Value
+                             };
+                var userName = claims.ToList()[0].value.ToString(); //converting to string 
+                AspNetUser user = context.AspNetUsers.Where(u => u.UserName == userName).Single();
+
+                Favorite selectedGame = context.Favorites.Where(u => u.GameID == gameId).FirstOrDefault() ; //performing transaction
+                context.Favorites.Remove(selectedGame);
+                context.SaveChanges(); //saving to db 
+            }
+            return Ok();
+        }
         [AllowAnonymous] //allows not signed in users to access this route
         [Route("api/game/{id:guid}")]
         [HttpGet]
