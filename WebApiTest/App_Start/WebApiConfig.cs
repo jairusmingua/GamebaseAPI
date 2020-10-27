@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Formatting;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Filters;
 
 namespace WebApiTest
@@ -15,10 +16,10 @@ namespace WebApiTest
         {
             // Web API configuration and services
             //config.Filters.Add(new IgnoreNullValuesFilter());
-     
+            var cors = new EnableCorsAttribute("*", "*", "*");
             // Web API routes
             config.MapHttpAttributeRoutes();
-
+            config.EnableCors(cors);
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}"
