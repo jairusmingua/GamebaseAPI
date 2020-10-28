@@ -18,6 +18,7 @@ namespace WebApiTest
         public gamebase1Entities()
             : base("name=gamebase1Entities")
         {
+            Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
