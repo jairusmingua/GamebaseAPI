@@ -33,6 +33,7 @@ namespace WebApiTest.Controllers
                 return Ok(new UserProfileInfoModel { 
                     FirstName = user.FirstName,
                     LastName=user.LastName, 
+                    UserName = user.UserName,
                     Avatar=user.Avatar,
                     FavoriteCount=favoriteCount,
                     ReviewCount=reviewCount
@@ -54,6 +55,7 @@ namespace WebApiTest.Controllers
                 {
                     FirstName = user.FirstName,
                     LastName = user.LastName,
+                    UserName = user.UserName,
                     Avatar = user.Avatar,
                     FavoriteCount = favoriteCount,
                     ReviewCount = reviewCount
