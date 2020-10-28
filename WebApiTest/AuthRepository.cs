@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using WebApiTest.Models;
@@ -37,6 +38,27 @@ namespace WebApiTest
             var result = await _userManager.CreateAsync(user, userModel.Password);
 
             return result;
+        }
+        public async Task<IdentityResult> ChangePassword(ClaimsIdentity identity,ChangeValidationModel passwordModel)
+        {
+            using(var context =new gamebase1Entities()){
+
+         
+                var claims = from c in identity.Claims //extracting the username in var identity
+                             select new
+                             {
+                                 subject = c.Subject.Name,
+                                 type = c.Type,
+                                 value = c.Value
+                             };
+                var userName = claims.ToList()[0].value.ToString(); //converting to string 
+                AspNetUser user = context.AspNetUsers.Where(u => u.UserName == userName).Single();
+
+
+                var result = await _userManager.ChangePasswordAsync(user.Id, passwordModel.OldPassword, passwordModel.NewPassword);
+
+                return result;
+            }
         }
 
         public async Task<ApplicationUser> FindUser(string userName, string password)

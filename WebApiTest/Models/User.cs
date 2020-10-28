@@ -8,6 +8,7 @@ namespace WebApiTest.Models
 {
     public class User
     {
+        public static object Identity { get; internal set; }
         [Required]
         [Display(Name = "User name")]
         public string Username { get; set; }

@@ -192,6 +192,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\ChangeValidationModel.cs" />
     <Compile Include="Models\GameModel.cs" />
     <Compile Include="Models\ReviewModel.cs" />
     <Compile Include="Models\User.cs" />
