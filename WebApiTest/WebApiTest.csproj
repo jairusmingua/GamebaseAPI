@@ -214,7 +214,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ClassDiagram1.cd" />
+    <Content Include="ControllersDiagram.cd" />
     <EntityDeploy Include="GameBase.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>GameBase.Designer.cs</LastGenOutput>
@@ -222,6 +222,7 @@
     <Content Include="GameBase.edmx.diagram">
       <DependentUpon>GameBase.edmx</DependentUpon>
     </Content>
+    <Content Include="ModelsDiagram.cd" />
     <None Include="packages.config" />
     <Content Include="README.md" />
     <None Include="Web.Debug.config">
