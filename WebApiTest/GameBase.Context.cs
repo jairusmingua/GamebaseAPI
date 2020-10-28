@@ -18,7 +18,6 @@ namespace WebApiTest
         public gamebase1Entities()
             : base("name=gamebase1Entities")
         {
-            Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -30,12 +29,12 @@ namespace WebApiTest
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Game> Games { get; set; }
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<User_Credentials_> User_Credentials_ { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Favorite> Favorites { get; set; }
-        public virtual DbSet<User_Credentials_> User_Credentials_ { get; set; }
         public virtual DbSet<Review> Reviews { get; set; }
     }
 }

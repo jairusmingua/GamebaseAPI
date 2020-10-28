@@ -156,6 +156,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\ReviewController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="C__MigrationHistory.cs">
       <DependentUpon>GameBase.tt</DependentUpon>
     </Compile>
@@ -181,9 +182,20 @@
       <DependentUpon>GameBase.edmx</DependentUpon>
     </Compile>
     <Compile Include="Microsoft\Owin\Cors.cs" />
+    <Compile Include="Migrations\202010161723130_InitialCreate.cs" />
+    <Compile Include="Migrations\202010161723130_InitialCreate.designer.cs">
+      <DependentUpon>202010161723130_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010281155175_Extend_IdentityUser.cs" />
+    <Compile Include="Migrations\202010281155175_Extend_IdentityUser.designer.cs">
+      <DependentUpon>202010281155175_Extend_IdentityUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\GameModel.cs" />
     <Compile Include="Models\ReviewModel.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserProfileInfoModel.cs" />
     <Compile Include="News.cs">
       <DependentUpon>GameBase.tt</DependentUpon>
     </Compile>
@@ -226,6 +238,14 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202010161723130_InitialCreate.resx">
+      <DependentUpon>202010161723130_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010281155175_Extend_IdentityUser.resx">
+      <DependentUpon>202010281155175_Extend_IdentityUser.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
