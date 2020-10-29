@@ -16,6 +16,6 @@ namespace WebApiTest.Models
         public string ReviewText { get; set; }
         public int StarRating { get; set; }
 
-
+        public DateTime DateReview { get; set; }
     }
 }

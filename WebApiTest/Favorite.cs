@@ -17,6 +17,7 @@ namespace WebApiTest
         public System.Guid FavoriteID { get; set; }
         public Nullable<System.Guid> GameID { get; set; }
         public string UserID { get; set; }
+        public System.DateTime DateFavorite { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual Game Game { get; set; }

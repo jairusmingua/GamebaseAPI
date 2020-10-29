@@ -19,6 +19,7 @@ namespace WebApiTest
         public string UserID { get; set; }
         public string ReviewText { get; set; }
         public int StarRating { get; set; }
+        public System.DateTime DateReview { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual Game Game { get; set; }

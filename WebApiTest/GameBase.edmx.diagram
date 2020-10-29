@@ -14,15 +14,15 @@
         <EntityTypeShape EntityType="gamebase1Model.AspNetUserClaim" Width="1.5" PointX="11.875" PointY="12.625" />
         <EntityTypeShape EntityType="gamebase1Model.AspNetUserLogin" Width="1.5" PointX="11.875" PointY="10.125" />
         <EntityTypeShape EntityType="gamebase1Model.AspNetUser" Width="1.5" PointX="9.625" PointY="4.125" />
-        <EntityTypeShape EntityType="gamebase1Model.Favorite" Width="1.5" PointX="11.875" PointY="2.5" />
-        <EntityTypeShape EntityType="gamebase1Model.Review" Width="1.5" PointX="11.875" PointY="5.375" />
         <AssociationConnector Association="gamebase1Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="gamebase1Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="gamebase1Model.AspNetUserRoles" />
+        <EntityTypeShape EntityType="gamebase1Model.Favorite" Width="1.5" PointX="14.875" PointY="5.5" />
+        <EntityTypeShape EntityType="gamebase1Model.Review" Width="1.5" PointX="11.875" PointY="5.25" />
         <AssociationConnector Association="gamebase1Model.FK__Favorites__UserI__09A971A2" />
         <AssociationConnector Association="gamebase1Model.FK__Review__UserID__0F624AF8" />
         <AssociationConnector Association="gamebase1Model.FK__Favorites__GameI__08B54D69" />
         <AssociationConnector Association="gamebase1Model.FK__Review__GameID__0E6E26BF" />
-        <AssociationConnector Association="gamebase1Model.AspNetUserRoles" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

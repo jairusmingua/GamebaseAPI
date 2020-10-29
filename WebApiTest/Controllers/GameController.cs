@@ -32,40 +32,6 @@ namespace WebApiTest.Controllers
 
             return game;
         }
-        [Authorize]
-        [Route("api/game/favorites")]
-        [HttpGet]
-        //an authorized request wherein it maches users favorite game
-        public IEnumerable<Game> GetFavorites()
-        {
-            List<Game> game;
-            using (var context = new gamebase1Entities())
-            {
-                var identity = User.Identity as ClaimsIdentity; //each authorized request merong username na nakaattach sa mga request so need natin i extract mga yun at i match sa db
-                var claims = from c in identity.Claims //extracting the username in var identity
-                             select new
-                             {
-                                 subject = c.Subject.Name,
-                                 type = c.Type,
-                                 value = c.Value
-                             };
-                var userName = claims.ToList()[0].value.ToString(); //converting to string 
-                game = (from u in context.AspNetUsers 
-                        join f in context.Favorites
-                        on u.Id equals f.UserID
-                        join g in context.Games
-                        on f.GameID equals g.GameID
-                        where u.UserName == userName
-                        select g
-                        ).ToList();
-                // this performs a join command wherein it searches favorite table games that favorite by the username
-
-
-            }
-
-            return game;
-
-        }
         
         [Authorize]
         [Route("api/game/favorite/{gameId:guid}")]
@@ -88,8 +54,9 @@ namespace WebApiTest.Controllers
                 Favorite favorite = new Favorite {
                     FavoriteID = Guid.NewGuid(),
                     GameID = gameId,
-                    UserID = user.Id
-
+                    UserID = user.Id,
+                    DateFavorite = DateTime.Now
+                    
                 };
                 context.Favorites.Add(favorite); //performing transaction
                 context.SaveChanges(); //saving to db 
