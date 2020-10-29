@@ -36,7 +36,9 @@ namespace WebApiTest.Controllers
                     UserName = user.UserName,
                     Avatar=user.Avatar,
                     FavoriteCount=favoriteCount,
-                    ReviewCount=reviewCount
+                    ReviewCount=reviewCount,
+                    UserId = user.Id
+                   
                 });
               
             }
@@ -58,7 +60,9 @@ namespace WebApiTest.Controllers
                     UserName = user.UserName,
                     Avatar = user.Avatar,
                     FavoriteCount = favoriteCount,
-                    ReviewCount = reviewCount
+                    ReviewCount = reviewCount,
+                    UserId = user.Id
+                    
                 });
 
             }

@@ -13,6 +13,6 @@ namespace WebApiTest.Models
         public string UserName { get; set; }
         public int FavoriteCount { get; set; }
         public int ReviewCount { get; set; }
-
+        public string UserId { get; set; }
     }
 }
