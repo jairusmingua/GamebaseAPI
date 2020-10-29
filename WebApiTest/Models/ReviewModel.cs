@@ -15,7 +15,7 @@ namespace WebApiTest.Models
         public Game Game { get; set; }
         public string ReviewText { get; set; }
         public int StarRating { get; set; }
-
+        public string Avatar { get; set; }
         public DateTime DateReview { get; set; }
     }
 }

@@ -64,6 +64,7 @@ namespace WebApiTest.Controllers
                     Game = context.Games.Where(u=>u.GameID==gameId).FirstOrDefault(),
                     UserID = s.UserID,
                     UserName = s.AspNetUser.UserName,
+                    Avatar = s.AspNetUser.Avatar,
                     ReviewText =s.ReviewText,
                     StarRating = s.StarRating,
                     DateReview = s.DateReview
