@@ -16,7 +16,7 @@ namespace WebApiTest.Models
         public string Synopsis { get; set; }
         public Nullable<System.DateTime> GameReleased { get; set; }
         public string GameImageURL { get; set; }
-
+        public double StarRating { get; set; }
         public bool isFavorite { get; set; }
        
     }

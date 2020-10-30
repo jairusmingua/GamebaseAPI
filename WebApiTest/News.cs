@@ -15,8 +15,8 @@ namespace WebApiTest
     public partial class News
     {
         public System.Guid NewsID { get; set; }
-        public string ArticleTitle { get; set; }
         public string NewsURL { get; set; }
+        public string ArticleTitle { get; set; }
         public string NewsThumbnail { get; set; }
     }
 }

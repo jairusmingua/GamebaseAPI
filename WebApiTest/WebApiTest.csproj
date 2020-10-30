@@ -157,6 +157,7 @@
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\NewsController1.cs" />
     <Compile Include="Controllers\ReviewController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="C__MigrationHistory.cs">
       <DependentUpon>GameBase.tt</DependentUpon>
@@ -201,7 +202,6 @@
     <Compile Include="News.cs">
       <DependentUpon>GameBase.tt</DependentUpon>
     </Compile>
-    <Compile Include="NewsController1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Review.cs">
       <DependentUpon>GameBase.tt</DependentUpon>

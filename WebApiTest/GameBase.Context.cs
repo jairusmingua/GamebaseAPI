@@ -26,7 +26,6 @@ namespace WebApiTest
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<News> News { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Game> Games { get; set; }
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
@@ -37,5 +36,6 @@ namespace WebApiTest
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Favorite> Favorites { get; set; }
         public virtual DbSet<Review> Reviews { get; set; }
+        public virtual DbSet<News> News { get; set; }
     }
 }

@@ -22,6 +22,7 @@ namespace WebApiTest.Controllers
             {
                 try
                 {
+
                     var identity = User.Identity as ClaimsIdentity;//each authorized request merong username na nakaattach sa mga request so need natin i extract mga yun at i match sa db
                     var claims = from c in identity.Claims //extracting the username in var identity
                                  select new

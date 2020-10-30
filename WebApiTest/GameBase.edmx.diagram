@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="a37c2ccabf6446848c1575d4715ddab4" Name="Diagram1" ZoomLevel="62" DisplayType="true">
-        <EntityTypeShape EntityType="gamebase1Model.News" Width="1.5" PointX="5.375" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="gamebase1Model.sysdiagram" Width="1.5" PointX="2.75" PointY="7" IsExpanded="true" />
         <EntityTypeShape EntityType="gamebase1Model.Game" Width="1.5" PointX="5.375" PointY="5.875" />
         <EntityTypeShape EntityType="gamebase1Model.C__MigrationHistory" Width="1.5" PointX="2.625" PointY="4.75" />
@@ -23,6 +22,7 @@
         <AssociationConnector Association="gamebase1Model.FK__Review__UserID__0F624AF8" />
         <AssociationConnector Association="gamebase1Model.FK__Favorites__GameI__08B54D69" />
         <AssociationConnector Association="gamebase1Model.FK__Review__GameID__0E6E26BF" />
+        <EntityTypeShape EntityType="gamebase1Model.News" Width="1.5" PointX="3.375" PointY="0.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -9,6 +9,7 @@ using System.Data.Entity;
 using System.Security.Claims;
 using Microsoft.AspNet.Identity;
 using WebApiTest.Models;
+using System.Threading.Tasks;
 
 namespace WebApiTest.Controllers
 {
@@ -25,8 +26,6 @@ namespace WebApiTest.Controllers
             {
 
                 game = context.Games.Take(10).ToList(); /// get two games from db wala pang rankings ito or whatever
-
-                      
 
             }
 
@@ -88,11 +87,12 @@ namespace WebApiTest.Controllers
             }
             return Ok();
         }
-        [AllowAnonymous] //allows not signed in users to access this route
+       //allows not signed in users to access this route
+        [AllowAnonymous]
         [Route("api/game/{id:guid}")]
         [HttpGet]
         //gets game information
-        public IHttpActionResult GetGame(Guid id)
+        public async Task<IHttpActionResult> GetGame(Guid id)
         {   
 
             using (var context = new gamebase1Entities())
@@ -105,6 +105,10 @@ namespace WebApiTest.Controllers
                                  type = c.Type,
                                  value = c.Value
                              };
+                        double ratingAvg = (from r in context.Reviews
+                                         where r.GameID == id
+                                         select r.StarRating).Average();
+                ratingAvg = Math.Round(ratingAvg,2);
                 try
                 {
                     var userName = claims.ToList()[0].value.ToString(); //converting to string 
@@ -114,6 +118,8 @@ namespace WebApiTest.Controllers
                     {
                         Game game = context.Games.Where(p => p.GameID == id).Single();
                         Favorite favorite = context.Favorites.Where(u => u.GameID == game.GameID && u.UserID == user.Id).SingleOrDefault();
+                                           
+
                         GameModel g = new GameModel
                         {
                             GameID = game.GameID,
@@ -123,7 +129,8 @@ namespace WebApiTest.Controllers
                             Developer = game.Developer,
                             MatureRating = game.MatureRating,
                             Synopsis = game.Synopsis,
-                            isFavorite = favorite != null ? true : false
+                            isFavorite = favorite != null ? true : false,
+                            StarRating = ratingAvg
                         };
                         if (g == null)
                         {
@@ -134,7 +141,20 @@ namespace WebApiTest.Controllers
                     else
                     {
                         IQueryable<Game> game = context.Games.Where(p => p.GameID == id);
-                        Game g = game.ToList()[0];
+
+                        Game z = game.ToList()[0];
+                        GameModel g = new GameModel
+                        {
+                            GameID = z.GameID,
+                            GameTitle = z.GameTitle,
+                            GameImageURL = z.GameImageURL,
+                            GameReleased = z.GameReleased,
+                            Developer = z.Developer,
+                            MatureRating = z.MatureRating,
+                            Synopsis = z.Synopsis,
+                          
+                            StarRating = ratingAvg
+                        };
                         if (g == null)
                         {
                             return NotFound();
@@ -146,7 +166,19 @@ namespace WebApiTest.Controllers
                 catch(Exception err)
                 {
                     IQueryable<Game> game = context.Games.Where(p => p.GameID == id);
-                    Game g = game.ToList()[0];
+                    Game z = game.ToList()[0];
+                    GameModel g = new GameModel
+                    {
+                        GameID = z.GameID,
+                        GameTitle = z.GameTitle,
+                        GameImageURL = z.GameImageURL,
+                        GameReleased = z.GameReleased,
+                        Developer = z.Developer,
+                        MatureRating = z.MatureRating,
+                        Synopsis = z.Synopsis,
+                        StarRating = ratingAvg
+                       
+                    };
                     if (g == null)
                     {
                         return NotFound();

@@ -101,9 +101,9 @@ warning 6013: The table/view 'gamebase1.dbo.Avatars' does not have a primary key
             <PropertyRef Name="NewsID" />
           </Key>
           <Property Name="NewsID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="ArticleTitle" Type="nvarchar" MaxLength="40" Nullable="false" />
-          <Property Name="NewsURL" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="NewsThumbnail" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="NewsURL" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ArticleTitle" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="NewsThumbnail" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Review">
           <Key>
@@ -291,15 +291,6 @@ warning 6013: The table/view 'gamebase1.dbo.Avatars' does not have a primary key
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="gamebase1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="News">
-          <Key>
-            <PropertyRef Name="NewsID" />
-          </Key>
-          <Property Name="NewsID" Type="Guid" Nullable="false" />
-          <Property Name="ArticleTitle" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="NewsURL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="NewsThumbnail" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -311,7 +302,6 @@ warning 6013: The table/view 'gamebase1.dbo.Avatars' does not have a primary key
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityContainer Name="gamebase1Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="News" EntityType="Self.News" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Games" EntityType="gamebase1Model.Game" />
           <EntitySet Name="C__MigrationHistory" EntityType="gamebase1Model.C__MigrationHistory" />
@@ -350,6 +340,7 @@ warning 6013: The table/view 'gamebase1.dbo.Avatars' does not have a primary key
             <End Role="Game" EntitySet="Games" />
             <End Role="Review" EntitySet="Reviews" />
           </AssociationSet>
+          <EntitySet Name="News" EntityType="gamebase1Model.News" />
           </EntityContainer>
         <EntityType Name="Game">
           <Key>
@@ -544,22 +535,21 @@ warning 6013: The table/view 'gamebase1.dbo.Avatars' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="NewsID" />
+          </Key>
+          <Property Name="NewsID" Type="Guid" Nullable="false" />
+          <Property Name="NewsURL" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ArticleTitle" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NewsThumbnail" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="gamebase1ModelStoreContainer" CdmEntityContainer="gamebase1Entities">
-          <EntitySetMapping Name="News">
-            <EntityTypeMapping TypeName="gamebase1Model.News">
-              <MappingFragment StoreEntitySet="News">
-                <ScalarProperty Name="NewsID" ColumnName="NewsID" />
-                <ScalarProperty Name="ArticleTitle" ColumnName="ArticleTitle" />
-                <ScalarProperty Name="NewsURL" ColumnName="NewsURL" />
-                <ScalarProperty Name="NewsThumbnail" ColumnName="NewsThumbnail" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="gamebase1Model.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -681,6 +671,16 @@ warning 6013: The table/view 'gamebase1.dbo.Avatars' does not have a primary key
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="GameID" ColumnName="GameID" />
                 <ScalarProperty Name="ReviewID" ColumnName="ReviewID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="News">
+            <EntityTypeMapping TypeName="gamebase1Model.News">
+              <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="NewsThumbnail" ColumnName="NewsThumbnail" />
+                <ScalarProperty Name="ArticleTitle" ColumnName="ArticleTitle" />
+                <ScalarProperty Name="NewsURL" ColumnName="NewsURL" />
+                <ScalarProperty Name="NewsID" ColumnName="NewsID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
