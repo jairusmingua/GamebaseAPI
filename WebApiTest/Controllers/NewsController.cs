@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace WebApiTest.Controllers
 {
-    public class NewsController1 : ApiController
+    public class NewsController : ApiController
     {
         // GET api/<controller>
         public IEnumerable<News> Get()
