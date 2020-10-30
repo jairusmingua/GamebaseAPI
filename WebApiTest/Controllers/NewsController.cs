@@ -12,7 +12,17 @@ namespace WebApiTest.Controllers
         // GET api/<controller>
         public IEnumerable<News> Get()
         {
-            return new string[] { "value1", "value2" };
+            List<Game> News;
+            using (var context = new gamebase1Entities())
+            {
+
+                News = context.News.Take(10).ToList(); /// get two games from db wala pang rankings ito or whatever
+
+
+
+            }
+
+            return News;
         }
 
         // GET api/<controller>/5
