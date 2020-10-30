@@ -1,30 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="WebApiTest.Models.ApplicationUser">
-    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Position X="0.5" Y="0.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAEAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
       <FileName>Models\ApplicationUser.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WebApiTest.Models.ChangeValidationModel">
-    <Position X="2.25" Y="0.5" Width="1.5" />
+    <Position X="0.5" Y="2.25" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAEAAAAAAAAAAAAAAIAA=</HashCode>
       <FileName>Models\ChangeValidationModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WebApiTest.Models.GameModel">
-    <Position X="4" Y="0.5" Width="1.5" />
+    <Position X="3.5" Y="0.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAgAAAAAAAAAAAAAQAEAAAAIAIAAAAAAAgAAAAAAACI=</HashCode>
       <FileName>Models\GameModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WebApiTest.Models.ReviewModel">
-    <Position X="7.5" Y="0.5" Width="1.5" />
+    <Position X="7.5" Y="0.5" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAEAAAAAAEAAAgAABgAAAAAAQCAAAAAAAA=</HashCode>
+      <HashCode>AQAAAAAAAAAEAAAAAAUAAAgAABgAAAAAAQCAAAAAAAA=</HashCode>
       <FileName>Models\ReviewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -36,9 +36,9 @@
     </TypeIdentifier>
   </Class>
   <Class Name="WebApiTest.Models.UserProfileInfoModel">
-    <Position X="9.5" Y="0.5" Width="1.5" />
+    <Position X="10.5" Y="0.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAEAAAIAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <HashCode>AAAAAEAAAIAAAAAAAAQAAAgCAAAAAAAAAQAAAAAAAAg=</HashCode>
       <FileName>Models\UserProfileInfoModel.cs</FileName>
     </TypeIdentifier>
   </Class>

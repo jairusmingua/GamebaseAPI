@@ -200,6 +200,7 @@
     <Compile Include="News.cs">
       <DependentUpon>GameBase.tt</DependentUpon>
     </Compile>
+    <Compile Include="NewsController1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Review.cs">
       <DependentUpon>GameBase.tt</DependentUpon>
@@ -223,6 +224,7 @@
       <DependentUpon>GameBase.edmx</DependentUpon>
     </Content>
     <Content Include="ModelsDiagram.cd" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <Content Include="README.md" />
     <None Include="Web.Debug.config">
