@@ -10,7 +10,7 @@ namespace WebApiTest.Controllers
     public class NewsController1 : ApiController
     {
         // GET api/<controller>
-        public IEnumerable<string> Get()
+        public IEnumerable<News> Get()
         {
             return new string[] { "value1", "value2" };
         }
