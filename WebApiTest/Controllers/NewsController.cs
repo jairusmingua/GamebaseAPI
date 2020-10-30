@@ -12,7 +12,7 @@ namespace WebApiTest.Controllers
         // GET api/<controller>
         public IEnumerable<News> Get()
         {
-            List<Game> News;
+            List<News> News;
             using (var context = new gamebase1Entities())
             {
 
