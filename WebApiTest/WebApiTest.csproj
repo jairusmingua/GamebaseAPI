@@ -225,7 +225,6 @@
       <DependentUpon>GameBase.edmx</DependentUpon>
     </Content>
     <Content Include="ModelsDiagram.cd" />
-    <Content Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <Content Include="README.md" />
     <None Include="Web.Debug.config">

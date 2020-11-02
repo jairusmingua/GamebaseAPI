@@ -4,25 +4,25 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a37c2ccabf6446848c1575d4715ddab4" Name="Diagram1" ZoomLevel="62" DisplayType="true">
-        <EntityTypeShape EntityType="gamebase1Model.sysdiagram" Width="1.5" PointX="2.75" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="gamebase1Model.Game" Width="1.5" PointX="5.375" PointY="5.875" />
+      <Diagram DiagramId="a37c2ccabf6446848c1575d4715ddab4" Name="Diagram1" ZoomLevel="93" DisplayType="true">
+        <EntityTypeShape EntityType="gamebase1Model.sysdiagram" Width="1.5" PointX="0.875" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="gamebase1Model.Game" Width="2.375" PointX="12.5" PointY="5.75" />
         <EntityTypeShape EntityType="gamebase1Model.C__MigrationHistory" Width="1.5" PointX="2.625" PointY="4.75" />
         <EntityTypeShape EntityType="gamebase1Model.User_Credentials_" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="gamebase1Model.AspNetRole" Width="1.5" PointX="7.375" PointY="5.75" />
-        <EntityTypeShape EntityType="gamebase1Model.AspNetUserClaim" Width="1.5" PointX="11.875" PointY="12.625" />
-        <EntityTypeShape EntityType="gamebase1Model.AspNetUserLogin" Width="1.5" PointX="11.875" PointY="10.125" />
-        <EntityTypeShape EntityType="gamebase1Model.AspNetUser" Width="1.5" PointX="9.625" PointY="4.125" />
+        <EntityTypeShape EntityType="gamebase1Model.AspNetRole" Width="1.5" PointX="5.875" PointY="0.5" />
+        <EntityTypeShape EntityType="gamebase1Model.AspNetUserClaim" Width="3.25" PointX="8.125" PointY="5.625" />
+        <EntityTypeShape EntityType="gamebase1Model.AspNetUserLogin" Width="5.625" PointX="12.5" PointY="0.5" />
+        <EntityTypeShape EntityType="gamebase1Model.AspNetUser" Width="3.25" PointX="8.125" PointY="0.5" />
         <AssociationConnector Association="gamebase1Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="gamebase1Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="gamebase1Model.AspNetUserRoles" />
-        <EntityTypeShape EntityType="gamebase1Model.Favorite" Width="1.5" PointX="14.875" PointY="5.5" />
-        <EntityTypeShape EntityType="gamebase1Model.Review" Width="1.5" PointX="11.875" PointY="5.25" />
+        <EntityTypeShape EntityType="gamebase1Model.Favorite" Width="3" PointX="15.125" PointY="2.625" />
+        <EntityTypeShape EntityType="gamebase1Model.Review" Width="2.375" PointX="12.5" PointY="2.625" />
         <AssociationConnector Association="gamebase1Model.FK__Favorites__UserI__09A971A2" />
         <AssociationConnector Association="gamebase1Model.FK__Review__UserID__0F624AF8" />
         <AssociationConnector Association="gamebase1Model.FK__Favorites__GameI__08B54D69" />
         <AssociationConnector Association="gamebase1Model.FK__Review__GameID__0E6E26BF" />
-        <EntityTypeShape EntityType="gamebase1Model.News" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="gamebase1Model.News" Width="2.875" PointX="15.25" PointY="5.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

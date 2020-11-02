@@ -8,7 +8,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="WebApiTest.Controllers.AccountController">
-    <Position X="8" Y="2.5" Width="5.5" />
+    <Position X="8" Y="2.25" Width="5.5" />
     <TypeIdentifier>
       <HashCode>AAAAEAAAACAAgAAAAAAAQAAAAAABAAAAAAAAAEAABAA=</HashCode>
       <FileName>Controllers\AccountController.cs</FileName>
@@ -26,6 +26,20 @@
     <TypeIdentifier>
       <HashCode>AAAgAAAgCAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
       <FileName>Controllers\UserController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApiTest.Controllers.NewsController">
+    <Position X="2.75" Y="4.5" Width="5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\NewsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebApiTest.Controllers.SearchController">
+    <Position X="8" Y="5.25" Width="5.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\SearchController.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
