@@ -39,7 +39,7 @@ namespace WebApiTest.Controllers
             using (var context = new gamebase1Entities())
             {
 
-                game = context.Games.OrderByDescending(g=>g.GameReleased).Take(10).ToList(); /// get two games from db wala pang rankings ito or whatever
+                game = context.Games.OrderByDescending(g=>g.GameReleased).Take(Int32.Parse(c)).ToList(); /// get two games from db wala pang rankings ito or whatever
 
             }
 
