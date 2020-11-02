@@ -10,9 +10,17 @@ namespace WebApiTest.Controllers
     public class NewsController : ApiController
     {
         // GET api/<controller>
-        public IEnumerable<string> Get()
+        public IEnumerable<News> Get()
         {
-            return new string[] { "value1", "value2" };
+            List<News> news;
+            using (var context = new gamebase1Entities())
+            {
+
+                news = context.News.Take(10).ToList(); 
+
+            }
+
+            return news;
         }
 
         // GET api/<controller>/5
