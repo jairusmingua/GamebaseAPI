@@ -16,22 +16,35 @@ namespace WebApiTest.Controllers
     public class GameController : ApiController
     {
        
-        [Route("api/game/topgames")]
+        [Route("api/game/topgames/{c?}")]
         [HttpGet]
         //gets first top 10 from the db
-        public IEnumerable<Game>GetTopGames()
+        public IEnumerable<Game>GetTopGames(string c="10")
         {
             List<Game> game;
             using (var context = new gamebase1Entities())
             {
 
-                game = context.Games.Take(10).ToList(); /// get two games from db wala pang rankings ito or whatever
+                game = context.Games.Take(Int32.Parse(c)).ToList(); /// get two games from db wala pang rankings ito or whatever
 
             }
 
             return game;
         }
-        
+        [Route("api/game/newrelease/{c?}")]
+        [HttpGet]
+        public IEnumerable<Game> GetNewGames(string c="10")
+        {
+            List<Game> game;
+            using (var context = new gamebase1Entities())
+            {
+
+                game = context.Games.OrderByDescending(g=>g.GameReleased).Take(10).ToList(); /// get two games from db wala pang rankings ito or whatever
+
+            }
+
+            return game;
+        }
         [Authorize]
         [Route("api/game/favorite/{gameId:guid}")]
         [HttpPost]
@@ -107,7 +120,7 @@ namespace WebApiTest.Controllers
                              };
                         double ratingAvg = (from r in context.Reviews
                                          where r.GameID == id
-                                         select r.StarRating).Average();
+                                         select r.StarRating).DefaultIfEmpty(0).Average();
                 ratingAvg = Math.Round(ratingAvg,2);
                 try
                 {
