@@ -57,7 +57,7 @@ namespace WebApiTest.Controllers
             using (var context = new gamebase1Entities())
             {
                
-                IQueryable<Review> reviews = context.Reviews.Where(f=>f.GameID==gameId);
+                IQueryable<Review> reviews = context.Reviews.Where(f=>f.GameID==gameId).OrderByDescending(s => s.DateReview);
                 //Convert to a new model kasi exposed yung password ng user pag ginamit yung default review model
                 IQueryable<ReviewModel> r = reviews.Select(s => new ReviewModel { 
                     ReviewID = s.ReviewID,
