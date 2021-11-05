@@ -1,36 +1,57 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy WAR app to Azure Web App - gamebasebackend
+name: Build and deploy ASP app to Azure Web App - gamebasebackend
 
 on:
   push:
     branches:
       - master
+  workflow_dispatch:
 
 jobs:
-  build-and-deploy:
-    runs-on: 'windows-latest'
+  build:
+    runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@master
+      - uses: actions/checkout@v2
 
-    - name: Setup MSBuild path
-      uses: microsoft/setup-msbuild@v1.0.0
+      - name: Setup MSBuild path
+        uses: microsoft/setup-msbuild@v1.0.2
 
-    - name: Setup NuGet
-      uses: NuGet/setup-nuget@v1.0.2
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.5
 
-    - name: Restore NuGet packages
-      run: nuget restore
+      - name: Restore NuGet packages
+        run: nuget restore
 
-    - name: Publish to folder
-      run: msbuild /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="\published\"
+      - name: Publish to folder
+        run: msbuild /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="\published\"
 
-    - name: Deploy to Azure Web App
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: 'gamebasebackend'
-        slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_589d28e8506f40c8b33a307dfa9be03f }}
-        package: \published\
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v2
+        with:
+          name: ASP-app
+          path: '/published/**'
+
+  deploy:
+    runs-on: windows-latest
+    needs: build
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v2
+        with:
+          name: ASP-app
+
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'gamebasebackend'
+          slot-name: 'Production'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C10ADA8575454B649CB6FB0976118C4F }}
+          package: .
